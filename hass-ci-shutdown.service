@@ -1,0 +1,9 @@
+[Unit]
+Wants=syslog.service
+
+[Service]
+ExecStart=/bin/bash -c 'systemctl stop forgejo-runner.service && systemctl poweroff'
+TimeoutStopSec=30m # same as your runner's shutdown_timeout
+
+[Install]
+WantedBy=multi-user.target

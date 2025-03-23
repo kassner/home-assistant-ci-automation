@@ -1,0 +1,8 @@
+[Unit]
+Description=HomeAssistant CI shutdown server
+
+[Timer]
+OnBootSec=30m
+
+[Install]
+WantedBy=timers.target

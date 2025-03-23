@@ -1,0 +1,15 @@
+[Unit]
+Description=Forgejo Runner Podman container
+Wants=network-online.target podman.socket
+
+[Service]
+ExecStart=/usr/local/bin/forgejo-runner daemon -c /etc/forgejo-runner.yaml
+TimeoutStopSec=30m # same as your runner's shutdown_timeout
+Environment=DOCKER_HOST=unix:///run/user/1001/podman/podman.sock
+WorkingDirectory=~
+User=forgejo-runner
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
